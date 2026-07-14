@@ -1,28 +1,33 @@
 # CPX Server — Render Blueprint
 # Deploy: https://dashboard.render.com/blueprints (paste this file URL)
-# Or manually: New Web Service → set Root Directory to "cpx-server"
 services:
   - type: web
     name: cashspark-cpx-server
     env: node
     region: oregon
     plan: free
-    rootDir: cpx-server
+    rootDir: .
     buildCommand: npm install
     startCommand: npm start
     healthCheckPath: /health
     envVars:
       - key: NODE_VERSION
         value: "22"
-      # Generate a random secret string for FCM_API_KEY (e.g., "my-secret-key-123")
-      # Then set AppConstants.fcmApiKey in Flutter to the SAME value
+
+      # ── FCM API Key ───────────────────────────────────────
+      # Pick a strong secret string (e.g., "my-secret-key-123") and paste it
+      # into the Render Dashboard after deploy. Set the SAME value in
+      # Flutter's AppConstants.fcmApiKey.
       - key: FCM_API_KEY
         sync: false
-        generateValue: true
-      # Optional: set to "production" to enforce API key auth
+
+      # ── Firebase Service Account (for FCM) ────────────────
+      # After deploy, paste the ENTIRE Firebase JSON key content here.
+      # Get it from: Firebase Console → Project Settings → Service Accounts
+      # → Generate New Private Key
+      - key: SERVICE_ACCOUNT_JSON
+        sync: false
+
+      # ── Environment ───────────────────────────────────────
       - key: NODE_ENV
         value: "production"
-    secretFiles:
-      - key: service-account.json
-        # Generate from Firebase Console → Project Settings → Service Accounts
-        # → Generate New Private Key → paste the entire JSON content here
