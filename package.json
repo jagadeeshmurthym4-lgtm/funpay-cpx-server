@@ -1,0 +1,21 @@
+{
+  "name": "cashspark-cpx-server",
+  "description": "Standalone CPX Research postback receiver for Fun Pay",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "engines": {
+    "node": "22"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
+    "express": "^4.18.2",
+    "firebase-admin": "^11.11.0",
+    "razorpay": "^2.9.6"
+  },
+  "private": true
+}
