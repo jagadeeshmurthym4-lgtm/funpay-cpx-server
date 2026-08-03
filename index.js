@@ -168,6 +168,10 @@ app.post('/fcm/targeted', requireApiKey, async (req, res) => {
   }
 });
 
+// ─── CPX Research Postback ────────────────────────────────
+const { registerCpxPostback } = require("./route");
+registerCpxPostback(app, { db: admin.firestore(), admin });
+
 // ─── Start server ───────────────────────────────────────────────
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {

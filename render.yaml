@@ -29,5 +29,13 @@ services:
         sync: false
 
       # ── Environment ───────────────────────────────────────
+      # ── CPX Research Postback Secret ─────────────────
+      # Paste the SAME value as the "secure hash" in the CPX dashboard.
+      - key: CPX_SECRET
+        sync: false
+
+      # Dev only: "true" accepts unsigned postbacks. NEVER true in production.
+      - key: CPX_ALLOW_UNSIGNED
+        sync: false
       - key: NODE_ENV
         value: "production"
